@@ -1,130 +1,239 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8" name="viewport" 	content="width=device-width, inicitial-scale=1.0"/>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Vértice Mental é um blog sobre filosofia, cultura, espiritualidade, tecnologia e ideias que se conectam.">
+	<meta name="author" content="Gabriel Gonçalves">
+
 	<title>Vértice Mental</title>
-	<link rel="icon" href="/images/favicon-vertice-mental.ico" type="image/ico">
+
+	<link rel="icon" href="images/favicon-vertice-mental.ico" type="image/x-icon">
 </head>
 
 <body>
 
 	<!-- Cabeçalho e Menu de navegação -->
 	<header id="home">
-		<br>
-		<div><a href="#home"><img src="/images/logo-vertice-mental.webp" alt="Logo" width="100"></a></div>
-		<nav>
+
+		<div>
+			<a href="#home">
+				<img src="images/logo-vertice-mental.webp" alt="Logo do Vértice Mental" width="120">
+			</a>
+		</div>
+
+		<nav aria-label="Menu principal">
 			<ul>
-				<li><a href="#home">Home</a></li>
-				<li><a href="/artigos.html">Artigos</a></li>
+				<li><a href="#home">Início</a></li>
+				<li><a href="artigos.html">Artigos</a></li>
 				<li><a href="#sobre">Sobre</a></li>
 				<li><a href="#contato">Contato</a></li>
-				<li><a href="https://instagram.com" target="_blank"><img src="/images/instagram-logo.webp" alt="Logo Instagram" width="20"> Acompanhe no Instagram</a></li>
-				<li><a href="https://web.whatsapp.com" target="_blank"><img src="/images/whatsapp-logo.webp" alt="Logo WhatsApp" width="20"> Nos envie uma mensagem</a></li>
-			</ul>	
+			</ul>
 		</nav>
-	</header><br><br>
 
-	<!-- Capa do Blog - futuramente carrossel com destaques -->
-	<div><h1>Bem-vindo(a) ao Vértice Mental</h1></div> 
-	<div>
-		<img src="/images/banner-vertice-mental.webp" alt="Capa do Blog" width="720">
-	</div><br><br>
+		<hr>
 
-	<!-- Seção com os últimos N artigos mais recentes - futuramente atualizado automaticamente via JS -->
-	<div>
-		<div><h2>Últimos Artigos</h2></div>
+		<nav aria-label="Redes sociais">
+			<ul>
+				<li>
+					<a href="https://instagram.com" target="_blank">
+						<img src="images/instagram-logo.webp" alt="Instagram" width="20">
+						Instagram
+					</a>
+				</li>
+				<li>
+					<a href="https://web.whatsapp.com" target="_blank">
+						<img src="images/whatsapp-logo.webp" alt="WhatsApp" width="20">
+						WhatsApp
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
 
-		<!-- Artigo 1 -->
-		<div>
-			<img src="/images/leis-hermeticas.webp" alt="Capa do Artigo" width="390">
-			<h3>As 7 Leis Herméticas na Vida Cotidiana</h3>
-			<p>As 7 leis herméticas explicadas na prática: como pensamentos, energia e ações moldam sua realidade no dia a dia.</p>
-			<a href="/artigos/leis-hermeticas.html">Ler artigo</a>
-		</div><br><br>
+	<hr>
 
-		<!-- Artigo 2 -->
-		<!-- <div>
-			<img src="/images/eletromagnetismo.webp" alt="Capa do Artigo" width="390">
-			<h3>Eletromagnetismo e a Lei da Atração</h3>
-			<p>Sinopse do artigo</p>
-			<a href="">Ler artigo</a>
-		</div><br><br> -->
+	<main>
 
-		<!-- Artigo 3 -->
-		<!-- <div>
-			<img src="/images/oracoes-da-mente.webp" alt="Capa do Artigo" width="390">
-			<h3>Orações da Mente</h3>
-			<p>Sinopse do artigo</p>
-			<a href="">Ler artigo</a>
-		</div><br><br> -->
+		<!-- Capa do Blog - futuramente carrossel com destaques -->
+		<section id="capa">
+			<h1>Bem-vindo(a) ao Vértice Mental</h1>
 
-		<div><a href="/artigos.html">Ver todos os artigos</a></div>
+			<figure>
+				<img src="images/banner-vertice-mental.webp" alt="Banner do blog Vértice Mental com símbolo geométrico e visual tecnológico" width="720">
+				<figcaption>
+					Um espaço para conectar filosofia, cultura, espiritualidade, tecnologia e ideias.
+				</figcaption>
+			</figure>
 
-	</div><br><br>
-
-	<!-- Formulário de captura para newsletter -->
-	<div>
-		<div><h2>Seja avisado de novos artigos</h2></div>
-		<div>
-			<form>
-				<div>
-					<label for="nome">Nome:</label>
-					<input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
-				</div>
-				
-				<div>
-					<label for="email">E-mail:</label>
-					<input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
-				</div>
-				<br>
-				<button type="submit">Cadastrar</button>
-			</form>
-		</div>
-	</div><br><br>
-
-	<!-- Seção "sobre" com informações sobre o autor e o projeto -->
-	 <div id="sobre">
-	 	<div><h2>O Vértice Mental</h2></div>
-		<div><img src="/images/autor.webp" alt="Foto do autor" width="300"></div>
-		<div>
 			<p>
-				O Vértice Mental nasce da ideia de que <strong>todo pensamento relevante não surge do nada,</strong><br>
-				ele é resultado do encontro entre diferentes ideias.<br><br>
-
-				Assim como na geometria, onde um vértice é formado pelo encontro de arestas, aqui<br>
-				cada reflexão representa um ponto de convergência entre referências, experiências,<br>
-				conhecimentos e questionamentos. É nesse encontro que surgem novos significados.<br><br>
-
-				<strong>Este projeto é um espaço para explorar esses encontros.</strong><br><br>
-
-				Um lugar onde filosofia, ciência, tecnologia, arte, espiritualidade e cultura se conectam.<br>
-				Não como áreas isoladas, mas como partes de uma mesma rede de pensamento.<br><br>
-
-				O objetivo não é apresentar verdades absolutas, mas provocar conexões.<br><br>
-
-				Cada texto, cada insight e cada análise são tentativas de formar novos vértices mentais, pontos onde<br>
-				ideias se cruzam e expandem a forma como enxergamos o mundo.<br><br>
-
-				Se você também acredita que pensar é conectar, você está no lugar certo.
+				Aqui, pensamentos se encontram, referências se cruzam e novos vértices mentais surgem.
 			</p>
-			<cite><i>Autor: Gabriel Gonçalves</i></cite>
-		</div>
-	 </div><br><br>
+		</section>
+
+		<hr>
+
+		<!-- Seção com os últimos N artigos mais recentes - futuramente atualizado automaticamente via JS -->
+		<section id="artigos">
+			<h2>Últimos Artigos</h2>
+
+			<p>
+				Confira as reflexões mais recentes publicadas no Vértice Mental.
+			</p>
+
+			<!-- Artigo 1 -->
+			<article>
+				<a href="artigos/leis-hermeticas.html">
+				<h3>As 7 Leis Herméticas na Vida Cotidiana</h3>
+
+				<figure>
+					<img src="images/leis-hermeticas.webp" alt="Imagem de capa do artigo As 7 Leis Herméticas na Vida Cotidiana" width="390">
+					<figcaption>Artigo sobre filosofia hermética aplicada ao cotidiano.</figcaption>
+				</figure>
+
+				<p>
+					As 7 leis herméticas explicadas na prática: como pensamentos, energia e ações moldam sua realidade no dia a dia.
+				</p>
+				</a>
+				<h4>
+					<a href="artigos/leis-hermeticas.html">Ler artigo completo</a>
+				</h4>
+			</article>
+
+			<hr>	
+
+			<!-- Artigo 2 -->
+			<article>
+				<a href="artigos/eletromagnetismo-lei-da-atracao.html">
+				<h3>A Física da Manifestação: Eletromagnetismo, Lei da Atração e a Escala Hawkins</h3>
+
+				<figure>
+					<img src="images/eletromagnetismo.webp" alt="Imagem de capa do artigo Eletromagnetismo e a Lei da Atração" width="390">
+					<figcaption>Artigo sobre o campo eletromagnético de Maxwell e a Lei da Atração.</figcaption>
+				</figure>
+
+				<p>
+					Você não atrai o que deseja — você atrai aquilo que vibra.
+				</p>
+				</a>
+				<h4>
+					<a href="artigos/eletromagnetismo-lei-da-atracao.html">Ler artigo completo</a>
+				</h4>
+			</article>
+
+			<hr>
+
+			<h3>
+				<a href="artigos.html">Ver todos os artigos publicados</a>
+			</h3>
+
+		</section>
+
+		<hr>
+
+		<!-- Formulário de captura para newsletter -->
+		<section id="newsletter">
+			<div><h2>Seja avisado de novos artigos</h2></div>
+			<div>
+				<form action="#" method="post">
+					<fieldset>
+						<legend>Cadastro na newsletter</legend>
+
+						<p>
+							<label for="nome">Nome:</label><br>
+							<input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+						</p>
+
+						<p>
+							<label for="email">E-mail:</label><br>
+							<input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+						</p>
+
+						<p>
+							<button type="submit">Cadastrar</button>
+						</p>
+					</fieldset>
+				</form>
+			</div>
+		</section>
+
+		<!-- Seção "sobre" com informações sobre o autor e o projeto -->
+		<section id="sobre">
+			<div><h2>O Vértice Mental</h2></div>
+			<div><img src="images/autor.webp" alt="Foto do autor" width="300"></div>
+			<div>
+				<p>
+					O Vértice Mental nasce da ideia de que <strong>todo pensamento relevante não surge do nada</strong>, ele é resultado do encontro entre diferentes ideias.
+				</p>
+
+				<p>
+					Assim como na geometria, onde um vértice é formado pelo encontro de arestas, aqui cada reflexão representa um ponto de convergência entre referências, experiências, conhecimentos e questionamentos.
+				</p>
+
+				<p>
+					<strong>Este projeto é um espaço para explorar esses encontros.</strong>
+				</p>
+
+				<p>
+					Um lugar onde filosofia, ciência, tecnologia, arte, espiritualidade e cultura se conectam — não como áreas isoladas, mas como partes de uma mesma rede de pensamento.
+				</p>
+
+				<p>
+					O objetivo não é apresentar verdades absolutas, mas provocar conexões.
+				</p>
+
+				<p>
+					Cada texto, cada insight e cada análise são tentativas de formar novos vértices mentais, pontos onde ideias se cruzam e expandem a forma como enxergamos o mundo.
+				</p>
+
+				<p>
+					Se você também acredita que pensar é conectar, você está no lugar certo.
+				</p>
+				<cite><i>Autor: Gabriel Gonçalves</i></cite>
+			</div>
+		</section>
+
+
+	</main> 
+
+	<hr>
 
 	<!-- Seção "contato" rodapé  -->
-	<footer>
-		<div id="contato">
-			<h2>Entre em Contato</h2>
+	<footer id="contato">
+		<h2>Entre em Contato</h2>
+
+		<nav aria-label="Links de contato">
 			<ul>
-				<li><a href="https://youtube.com" target="_blank"><img src="/images/youtube-logo.webp" alt="Logo Youtube" width="30"> Canal do Youtube</a></li>
-				<li><a href="https://instagram.com" target="_blank"><img src="/images/instagram-logo.webp" alt="Logo Instagram" width="30"> Siga no Instagram</a></li>
-				<li><a href="tel:+554002-8922">Telefone</a></li>
-				<li><a href="mailto:contato@verticemental.com.br">Enviar e-mail</a></li>
-				<p>Caixa Postal: 11631, CEP 05090-970, São Paulo - SP</p>
-				<p>Nossa sede: Avenida das Comunicações, 4 - Vila Jaraguá, Osasco - SP, CEP: 06276-905</p>
-				<p>Todos os direitos reservados a Vértice Mental &#169; 2026</p>
+				<li>
+					<a href="https://youtube.com" target="_blank">
+						<img src="images/youtube-logo.webp" alt="Logo do Youtube" width="30">
+						Canal do Youtube
+					</a>
+				</li>
+
+				<li>
+					<a href="https://instagram.com" target="_blank">
+						<img src="images/instagram-logo.webp" alt="Logo do Instagram" width="30">
+						Siga no Instagram
+					</a>
+				</li>
+
+				<li>
+					<a href="tel:+5540028922">Telefone</a>
+				</li>
+
+				<li>
+					<a href="mailto:contato@verticemental.com.br">Enviar e-mail</a>
+				</li>
 			</ul>
-		</div>
+		</nav>
+
+		<address>
+			Caixa Postal: 11631, CEP 05090-970, São Paulo - SP<br>
+			Nossa sede: Avenida das Comunicações, 4 - Vila Jaraguá, Osasco - SP, CEP: 06276-905
+		</address>
+
+		<p>Todos os direitos reservados a Vértice Mental &#169; 2026</p>
 	</footer>
 
 </body>
