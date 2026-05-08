@@ -1,0 +1,168 @@
+/* Reset do CSS padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit; 
+}
+
+/* Estilo da página como um todo */
+body {
+
+    font-family: 'Lora', serif;
+    color: #2b2b2b;
+    line-height: 1.6;
+}
+
+/* Cabeçalho e Menus */
+header {
+    width: 100%;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 100;
+}
+
+.container-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-header img, #menu-principal a {
+    transition: all 0.3s ease;
+}
+
+.container-header a:hover img {
+    transform: scale(1.1);
+}
+
+#menu-principal a:hover {
+    color: #6a0dad;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 2px;
+}
+
+#menu-principal {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+#menu-principal li {
+    display: inline-block;
+}
+
+#menu-social {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#menu-social li {
+    display: inline-block;
+}
+
+/* Seções */
+main, footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* Títulos e Sub títulos*/
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+
+    text-align: center;
+}
+
+/* interface */
+header nav, footer nav, button, input {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Capa do Blog */
+#capa {
+
+}
+
+#capa figure img {
+    width: 100%;
+    height: auto;
+
+    border-radius: 28px;
+}
+
+#capa figure figcaption {
+    margin: 10px 0px 30px;
+    font-size: 1.3rem;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+}
+
+#capa p {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    color: #2b2b2b;
+
+    padding-right: 5px;
+}
+
+/* Animação de typewrite, será substituído por JS no futuro */
+#capa p::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: #ffffff;
+
+    border-left: 3px solid #6a0dad;
+
+    animation:
+    descobrir 4s steps(75) 1.5s forwards,
+    piscando 0.8s step-end infinite;
+}
+
+@keyframes descobrir {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
+@keyframes piscando {
+    from , to { border-left-color: transparent; }
+    50% { border-left-color: #6a0dad}
+}
+
+/* Últimos Artigos */
+#artigos {
+
+}
+
+article {
+    display: grid;
+    align-items: center;
+}

@@ -8,50 +8,53 @@
 
 	<title>Vértice Mental</title>
 
-	<link rel="icon" href="images/favicon-vertice-mental.ico" type="image/x-icon">
+	<link rel="icon" href="./images/favicon-vertice-mental.ico" type="image/x-icon">
+
+	<!-- Conexão com o Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+
+	<link	rel="stylesheet" href="./assets/css/style.css"
 </head>
 
 <body>
 
 	<!-- Cabeçalho e Menu de navegação -->
 	<header id="home">
+		<div class="container-header">
+			<div>
+				<a href="#home">
+					<img src="./images/logo-vertice-mental.webp" alt="Logo do Vértice Mental" width="120">
+				</a>
+			</div>
 
-		<div>
-			<a href="#home">
-				<img src="images/logo-vertice-mental.webp" alt="Logo do Vértice Mental" width="120">
-			</a>
-		</div>
-
-		<nav aria-label="Menu principal">
-			<ul>
-				<li><a href="#home">Início</a></li>
-				<li><a href="artigos.html">Artigos</a></li>
-				<li><a href="#sobre">Sobre</a></li>
-				<li><a href="#contato">Contato</a></li>
-			</ul>
-		</nav>
-
-		<hr>
-
-		<nav aria-label="Redes sociais">
-			<ul>
-				<li>
-					<a href="https://instagram.com" target="_blank">
-						<img src="images/instagram-logo.webp" alt="Instagram" width="20">
-						Instagram
-					</a>
-				</li>
-				<li>
-					<a href="https://web.whatsapp.com" target="_blank">
-						<img src="images/whatsapp-logo.webp" alt="WhatsApp" width="20">
-						WhatsApp
-					</a>
-				</li>
-			</ul>
-		</nav>
+			<nav aria-label="Menu principal">
+				<ul id="menu-principal">
+					<li><a href="#home">Início</a></li>
+					<li><a href="artigos.html">Artigos</a></li>
+					<li><a href="loja.html">Loja</a></li>
+					<li><a href="sobre.html">Sobre</a></li>
+					<li><a href="#contato">Contato</a></li>
+				</ul>
+			</nav>
+			<nav aria-label="Menu Redes Sociais">
+				<ul id="menu-social">	
+					<li>
+						<a href="https://instagram.com" target="_blank">
+							<img src="images/instagram-logo.webp" alt="Instagram" width="20">
+						</a>
+					</li>
+					<li>
+						<a href="https://web.whatsapp.com" target="_blank">
+							<img src="images/whatsapp-logo.webp" alt="WhatsApp" width="20">
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>	
 	</header>
-
-	<hr>
 
 	<main>
 
@@ -62,16 +65,16 @@
 			<figure>
 				<img src="images/banner-vertice-mental.webp" alt="Banner do blog Vértice Mental com símbolo geométrico e visual tecnológico" width="720">
 				<figcaption>
-					Um espaço para conectar filosofia, cultura, espiritualidade, tecnologia e ideias.
+					Um espaço para conectar filosofia, cultura, espiritualidade, tecnologia e ideias. 
 				</figcaption>
 			</figure>
 
 			<p>
-				Aqui, pensamentos se encontram, referências se cruzam e novos vértices mentais surgem.
+				&#8220;Aqui, pensamentos se encontram, referências se cruzam e novos vértices mentais surgem.&#8221;
 			</p>
 		</section>
 
-		<hr>
+		 
 
 		<!-- Seção com os últimos N artigos mais recentes - futuramente atualizado automaticamente via JS -->
 		<section id="artigos">
@@ -100,7 +103,7 @@
 				</h4>
 			</article>
 
-			<hr>	
+			 	
 
 			<!-- Artigo 2 -->
 			<article>
@@ -121,7 +124,7 @@
 				</h4>
 			</article>
 
-			<hr>
+			 
 
 			<h3>
 				<a href="artigos.html">Ver todos os artigos publicados</a>
@@ -129,7 +132,7 @@
 
 		</section>
 
-		<hr>
+		 
 
 		<!-- Formulário de captura para newsletter -->
 		<section id="newsletter">
@@ -157,46 +160,9 @@
 			</div>
 		</section>
 
-		<!-- Seção "sobre" com informações sobre o autor e o projeto -->
-		<section id="sobre">
-			<div><h2>O Vértice Mental</h2></div>
-			<div><img src="images/autor.webp" alt="Foto do autor" width="300"></div>
-			<div>
-				<p>
-					O Vértice Mental nasce da ideia de que <strong>todo pensamento relevante não surge do nada</strong>, ele é resultado do encontro entre diferentes ideias.
-				</p>
-
-				<p>
-					Assim como na geometria, onde um vértice é formado pelo encontro de arestas, aqui cada reflexão representa um ponto de convergência entre referências, experiências, conhecimentos e questionamentos.
-				</p>
-
-				<p>
-					<strong>Este projeto é um espaço para explorar esses encontros.</strong>
-				</p>
-
-				<p>
-					Um lugar onde filosofia, ciência, tecnologia, arte, espiritualidade e cultura se conectam — não como áreas isoladas, mas como partes de uma mesma rede de pensamento.
-				</p>
-
-				<p>
-					O objetivo não é apresentar verdades absolutas, mas provocar conexões.
-				</p>
-
-				<p>
-					Cada texto, cada insight e cada análise são tentativas de formar novos vértices mentais, pontos onde ideias se cruzam e expandem a forma como enxergamos o mundo.
-				</p>
-
-				<p>
-					Se você também acredita que pensar é conectar, você está no lugar certo.
-				</p>
-				<cite><i>Autor: Gabriel Gonçalves</i></cite>
-			</div>
-		</section>
-
-
 	</main> 
 
-	<hr>
+	 
 
 	<!-- Seção "contato" rodapé  -->
 	<footer id="contato">
