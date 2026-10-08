@@ -1,9 +1,14 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 export default function Footer() {
   const [copiado, setCopiado] = useState(false);
+  const [ano, setAno] = useState('');
+
+  useEffect(() => {
+    setAno(new Date().getFullYear().toString());
+  }, []);
 
   const copiarEmail = () => {
     navigator.clipboard.writeText('contato@verticemental.com.br');
@@ -46,7 +51,7 @@ export default function Footer() {
         </ul>
 
         <div id="copyright" className="mt-[18px] mb-[5px] text-sm text-[#666]">
-          &copy; {new Date().getFullYear()} Vértice Mental. Por Gabriel Gonçalves.
+          &copy; {ano ? ano : '2026'} Vértice Mental. Por Gabriel Gonçalves.
         </div>
       </div>
     </footer>
