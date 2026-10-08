@@ -2,25 +2,37 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #2b2b2b;
+  --heading: #1a1a1a;
+  
+  /* Cores Vértice Mental originais */
+  --color-primary: #6a0dad;
+  --color-primary-light: #8b5fbf;
+  --color-primary-dark: #3c0464;
+  --color-input-bg: #1B1C24;
+  --color-input-hover: #272935;
+  --color-input-focus: #b19cd9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-heading: var(--heading);
+  
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-dark: var(--color-primary-dark);
+  
+  --color-input-bg: var(--color-input-bg);
+  --color-input-hover: var(--color-input-hover);
+  --color-input-focus: var(--color-input-focus);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-inter), sans-serif;
+  --font-serif: var(--font-playfair), serif;
+  --font-lora: var(--font-lora), serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

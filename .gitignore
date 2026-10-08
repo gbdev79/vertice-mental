@@ -39,3 +39,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Arquivos grandes / Mídia pesada (evita erro LFS no GitHub)
+*.mp4
+*.mkv
+*.avi
+*.mov
+*.zip
+*.tar.gz
+*.rar
+*.sql
+*.dump
+*.log
+
+# Caches locais adicionais
+.turbo/
+.cache/
