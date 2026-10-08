@@ -1,18 +1,56 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { Suspense } from 'react';
 import { createClient } from '@/utils/supabase/server';
 
-export const dynamic = 'force-dynamic';
-
-export default async function Home() {
+// Componente separado para buscar dados dinamicamente no servidor
+async function LatestArticlesList() {
   const supabase = await createClient();
   
-  // Busca os 4 últimos artigos direto do Supabase
   const { data: artigos } = await supabase
     .from('artigos')
     .select('*')
     .order('data_criacao', { ascending: false })
     .limit(4);
+
+  if (!artigos || artigos.length === 0) {
+    return (
+      <p className="text-center italic text-gray-500 w-full mt-[30px]">
+        Nenhum artigo publicado ainda. Acesse o Supabase para cadastrar seu primeiro artigo!
+      </p>
+    );
+  }
+
+  return (
+    <>
+      {artigos.map((item) => (
+        <article key={item.id} className="w-[500px] h-[480px] bg-white rounded-[12px] shadow-[0_4px_15px_rgba(0,0,0,0.2)] px-[25px] flex flex-col text-center overflow-hidden transition-transform duration-300">
+          <Image 
+            src={item.imagem || '/images/leis-hermeticas.webp'} 
+            alt={item.titulo} 
+            width={450} 
+            height={220} 
+            className="w-full h-[220px] object-cover rounded-[8px] mt-[20px] mx-auto"
+          />
+          <div className="flex-1 mt-[20px]">
+            <h3 className="text-[18px] font-serif font-bold text-heading m-0">
+              {item.titulo}
+            </h3>
+            <p className="text-gray-600 mt-[10px] line-clamp-2">
+              {item.subtitulo}
+            </p>
+          </div>
+          <hr className="my-[10px] mx-auto w-1/2 border-gray-200" />
+          <Link href={`/artigo/${item.slug}`} className="mb-[25px] text-[20px] font-serif font-bold hover:scale-110 hover:text-primary hover:underline underline-offset-[2px] transition-all cursor-pointer">
+            Ler artigo completo
+          </Link>
+        </article>
+      ))}
+    </>
+  );
+}
+
+export default function Home() {
 
   return (
     <div className="flex flex-col items-center w-full font-lora">
@@ -52,36 +90,9 @@ export default async function Home() {
         </p>
 
         <div className="mt-[50px] flex justify-center items-stretch gap-[40px] flex-wrap w-full">
-          {/* Mapeamento dos artigos do Supabase */}
-          {artigos && artigos.length > 0 ? (
-            artigos.map((item) => (
-              <article key={item.id} className="w-[500px] h-[480px] bg-white rounded-[12px] shadow-[0_4px_15px_rgba(0,0,0,0.2)] px-[25px] flex flex-col text-center overflow-hidden transition-transform duration-300">
-                <Image 
-                  src={item.imagem || '/images/leis-hermeticas.webp'} 
-                  alt={item.titulo} 
-                  width={450} 
-                  height={220} 
-                  className="w-full h-[220px] object-cover rounded-[8px] mt-[20px] mx-auto"
-                />
-                <div className="flex-1 mt-[20px]">
-                  <h3 className="text-[18px] font-serif font-bold text-heading m-0">
-                    {item.titulo}
-                  </h3>
-                  <p className="text-gray-600 mt-[10px] line-clamp-2">
-                    {item.subtitulo}
-                  </p>
-                </div>
-                <hr className="my-[10px] mx-auto w-1/2 border-gray-200" />
-                <Link href={`/artigo/${item.slug}`} className="mb-[25px] text-[20px] font-serif font-bold hover:scale-110 hover:text-primary hover:underline underline-offset-[2px] transition-all cursor-pointer">
-                  Ler artigo completo
-                </Link>
-              </article>
-            ))
-          ) : (
-            <p className="text-center italic text-gray-500 w-full mt-[30px]">
-              Nenhum artigo publicado ainda. Acesse o Supabase para cadastrar seu primeiro artigo!
-            </p>
-          )}
+          <Suspense fallback={<p className="text-center italic text-gray-500 w-full mt-[30px]">Carregando os últimos artigos...</p>}>
+            <LatestArticlesList />
+          </Suspense>
         </div>
 
         <div className="mt-[50px] mb-[50px] flex gap-[20px] justify-center items-center w-full transition-transform duration-300 hover:scale-110 group cursor-pointer">
