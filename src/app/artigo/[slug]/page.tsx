@@ -2,10 +2,9 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
-// Em Next.js 15, os parâmetros da URL são Assíncronos (Promises)
-export default async function ArtigoPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+async function ArticleContent({ slug }: { slug: string }) {
   const supabase = await createClient();
 
   // Busca o artigo específico pelo slug
@@ -28,8 +27,7 @@ export default async function ArtigoPage({ params }: { params: Promise<{ slug: s
   });
 
   return (
-    <article className="w-full max-w-[800px] mx-auto px-5 py-[50px] font-lora">
-      
+    <>
       <div className="mb-[30px] text-center">
         <h1 className="text-[40px] md:text-[50px] font-serif font-bold text-heading mb-[15px] leading-tight">
           {artigo.titulo}
@@ -67,6 +65,19 @@ export default async function ArtigoPage({ params }: { params: Promise<{ slug: s
           &larr; Voltar para a página inicial
         </Link>
       </div>
+    </>
+  );
+}
+
+// Em Next.js 15, os parâmetros da URL são Assíncronos (Promises)
+export default async function ArtigoPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  
+  return (
+    <article className="w-full max-w-[800px] mx-auto px-5 py-[50px] font-lora">
+      <Suspense fallback={<p className="text-center italic text-gray-500 mt-[50px]">Carregando o artigo...</p>}>
+        <ArticleContent slug={slug} />
+      </Suspense>
     </article>
   );
 }

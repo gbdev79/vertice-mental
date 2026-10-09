@@ -1,8 +1,9 @@
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
-export default async function AdminDashboard() {
+async function DashboardContent() {
   const supabase = await createClient();
   
   // 1. Verificação de Segurança: Garante que apenas usuários logados acessem essa página
@@ -19,8 +20,7 @@ export default async function AdminDashboard() {
     .order('data_criacao', { ascending: false });
 
   return (
-    <div className="bg-white p-6 md:p-8 rounded-[12px] shadow-sm border border-gray-200">
-      
+    <>
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
         <div>
           <h2 className="text-2xl font-bold font-serif text-gray-900">Gerenciar Artigos</h2>
@@ -78,7 +78,16 @@ export default async function AdminDashboard() {
           </tbody>
         </table>
       </div>
-      
+    </>
+  );
+}
+
+export default function AdminDashboard() {
+  return (
+    <div className="bg-white p-6 md:p-8 rounded-[12px] shadow-sm border border-gray-200">
+      <Suspense fallback={<p className="text-center italic text-gray-500 mt-[50px]">Carregando o painel de artigos...</p>}>
+        <DashboardContent />
+      </Suspense>
     </div>
   );
 }

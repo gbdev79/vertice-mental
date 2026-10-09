@@ -1,7 +1,8 @@
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 
-export default async function LoginPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
+async function LoginContent({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   const { error } = await searchParams;
 
   // Server Action para processar o login com segurança no backend
@@ -11,9 +12,9 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
     const password = formData.get('password') as string;
     const supabase = await createClient();
 
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
 
-    if (error) {
+    if (authError) {
       redirect('/admin/login?error=E-mail ou senha incorretos');
     }
 
@@ -22,7 +23,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   }
 
   return (
-    <div className="max-w-md mx-auto mt-20 bg-white p-8 rounded-[12px] shadow-sm border border-gray-200">
+    <>
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold font-serif text-gray-900 mb-2">Acesso Restrito</h2>
         <p className="text-gray-500 text-sm">Insira suas credenciais do Supabase para gerenciar o blog.</p>
@@ -62,6 +63,16 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
           Entrar no Painel
         </button>
       </form>
+    </>
+  );
+}
+
+export default function LoginPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
+  return (
+    <div className="max-w-md mx-auto mt-20 bg-white p-8 rounded-[12px] shadow-sm border border-gray-200">
+      <Suspense fallback={<p className="text-center italic text-gray-500">Carregando login...</p>}>
+        <LoginContent searchParams={searchParams} />
+      </Suspense>
     </div>
   );
 }
