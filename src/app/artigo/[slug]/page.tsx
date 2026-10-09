@@ -4,7 +4,8 @@ import { createClient } from '@/utils/supabase/server';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
-async function ArticleContent({ slug }: { slug: string }) {
+async function ArticleContent({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const supabase = await createClient();
 
   // Busca o artigo específico pelo slug
@@ -70,13 +71,11 @@ async function ArticleContent({ slug }: { slug: string }) {
 }
 
 // Em Next.js 15, os parâmetros da URL são Assíncronos (Promises)
-export default async function ArtigoPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  
+export default function ArtigoPage({ params }: { params: Promise<{ slug: string }> }) {
   return (
     <article className="w-full max-w-[800px] mx-auto px-5 py-[50px] font-lora">
       <Suspense fallback={<p className="text-center italic text-gray-500 mt-[50px]">Carregando o artigo...</p>}>
-        <ArticleContent slug={slug} />
+        <ArticleContent params={params} />
       </Suspense>
     </article>
   );
