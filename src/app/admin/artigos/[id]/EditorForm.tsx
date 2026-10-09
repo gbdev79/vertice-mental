@@ -2,12 +2,12 @@
 import { useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import 'react-quill/dist/quill.snow.css';
 
-// Carrega o editor visual dinamicamente (pois ele só funciona no lado do cliente/navegador)
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false, loading: () => <p className="text-gray-400 italic">Carregando editor...</p> });
+// Importações do Tiptap
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import LinkExtension from '@tiptap/extension-link';
 
 export default function EditorForm({ artigoInicial }: { artigoInicial?: any }) {
   const [titulo, setTitulo] = useState(artigoInicial?.titulo || '');
@@ -20,6 +20,28 @@ export default function EditorForm({ artigoInicial }: { artigoInicial?: any }) {
 
   const router = useRouter();
   const supabase = createClient();
+
+  // Configuração do Editor Tiptap
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      LinkExtension.configure({
+        openOnClick: false,
+        HTMLAttributes: {
+          class: 'text-primary underline cursor-pointer',
+        },
+      }),
+    ],
+    content: conteudo,
+    editorProps: {
+      attributes: {
+        class: 'p-4 min-h-[300px] max-h-[600px] overflow-y-auto focus:outline-none prose max-w-none',
+      },
+    },
+    onUpdate: ({ editor }) => {
+      setConteudo(editor.getHTML());
+    },
+  });
 
   const gerarSlug = (texto: string) => {
     return texto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
@@ -41,11 +63,9 @@ export default function EditorForm({ artigoInicial }: { artigoInicial?: any }) {
     let requestError;
 
     if (artigoInicial?.id) {
-      // Atualizar existente
       const { error } = await supabase.from('artigos').update(dados).eq('id', artigoInicial.id);
       requestError = error;
     } else {
-      // Criar novo
       const { error } = await supabase.from('artigos').insert([dados]);
       requestError = error;
     }
@@ -111,23 +131,26 @@ export default function EditorForm({ artigoInicial }: { artigoInicial?: any }) {
 
       <div className="mt-4">
         <label className="block text-sm font-medium text-gray-700 mb-2">Conteúdo do Artigo (Editor Visual)</label>
-        <div className="bg-white rounded-md overflow-hidden border border-gray-300">
-          <ReactQuill 
-            theme="snow" 
-            value={conteudo} 
-            onChange={setConteudo} 
-            className="h-[400px] mb-12"
-            modules={{
-              toolbar: [
-                [{ 'header': [2, 3, false] }],
-                ['bold', 'italic', 'underline', 'blockquote'],
-                [{'list': 'ordered'}, {'list': 'bullet'}],
-                ['link', 'image', 'video'],
-                ['clean']
-              ],
-            }}
-          />
-        </div>
+        
+        {/* Barra de Ferramentas Tiptap */}
+        {editor && (
+          <div className="bg-white rounded-md overflow-hidden border border-gray-300 flex flex-col mb-12">
+            <div className="bg-gray-100 p-2 flex gap-2 border-b border-gray-300 flex-wrap">
+              <button type="button" onClick={() => editor.chain().focus().toggleBold().run()} className={`px-3 py-1 rounded text-sm font-bold ${editor.isActive('bold') ? 'bg-gray-300 text-black' : 'hover:bg-gray-200 text-gray-700'}`}>B</button>
+              <button type="button" onClick={() => editor.chain().focus().toggleItalic().run()} className={`px-3 py-1 rounded text-sm italic ${editor.isActive('italic') ? 'bg-gray-300 text-black' : 'hover:bg-gray-200 text-gray-700'}`}>I</button>
+              <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} className={`px-3 py-1 rounded text-sm font-bold ${editor.isActive('heading', { level: 2 }) ? 'bg-gray-300 text-black' : 'hover:bg-gray-200 text-gray-700'}`}>H2</button>
+              <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} className={`px-3 py-1 rounded text-sm font-bold ${editor.isActive('heading', { level: 3 }) ? 'bg-gray-300 text-black' : 'hover:bg-gray-200 text-gray-700'}`}>H3</button>
+              <button type="button" onClick={() => editor.chain().focus().toggleBulletList().run()} className={`px-3 py-1 rounded text-sm ${editor.isActive('bulletList') ? 'bg-gray-300 text-black' : 'hover:bg-gray-200 text-gray-700'}`}>Lista</button>
+              <button type="button" onClick={() => {
+                const url = window.prompt('URL do Link:');
+                if (url) editor.chain().focus().setLink({ href: url }).run();
+              }} className={`px-3 py-1 rounded text-sm ${editor.isActive('link') ? 'bg-gray-300 text-black' : 'hover:bg-gray-200 text-gray-700'}`}>Link</button>
+              <button type="button" onClick={() => editor.chain().focus().unsetLink().run()} disabled={!editor.isActive('link')} className="px-3 py-1 rounded text-sm hover:bg-gray-200 text-gray-700 disabled:opacity-50">Tirar Link</button>
+            </div>
+            
+            <EditorContent editor={editor} />
+          </div>
+        )}
       </div>
 
       <div className="flex gap-4 justify-end mt-4">
