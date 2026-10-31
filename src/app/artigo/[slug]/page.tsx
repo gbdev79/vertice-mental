@@ -54,10 +54,13 @@ async function ArticleContent({ params }: { params: Promise<{ slug: string }> })
         />
       </figure>
 
-      {/* Exibe o conteúdo, permitindo quebra de linhas reais */}
-      <div className="text-[18px] md:text-[20px] text-foreground leading-[1.8] mb-[50px] whitespace-pre-wrap">
-        {artigo.conteudo || "Nenhum conteúdo adicionado a este artigo ainda. Acesse o painel do Supabase para editar o texto!"}
-      </div>
+      {/* Conteúdo formatado do artigo (renderiza HTML, imagens, cabeçalhos e formatações do CMS) */}
+      <div 
+        className="article-body text-[18px] md:text-[20px] mb-[50px]"
+        dangerouslySetInnerHTML={{ 
+          __html: artigo.conteudo || "<p class='italic text-gray-500'>Nenhum conteúdo adicionado a este artigo ainda.</p>" 
+        }}
+      />
 
       <hr className="my-[50px] mx-auto h-[1px] border-none w-1/4 bg-gradient-to-r from-transparent via-primary to-transparent" />
 
