@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Lora, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import SiteLayoutWrapper from "@/components/SiteLayoutWrapper";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -35,11 +34,9 @@ export default function RootLayout({
       className={`${inter.variable} ${lora.variable} ${playfair.variable} antialiased h-full`}
     >
       <body className="min-h-full flex flex-col font-sans bg-white text-gray-900">
-        <Header />
-        <main className="flex-1 w-full">
+        <SiteLayoutWrapper>
           {children}
-        </main>
-        <Footer />
+        </SiteLayoutWrapper>
       </body>
     </html>
   );
